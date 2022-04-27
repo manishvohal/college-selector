@@ -13,6 +13,7 @@ import SigninPage from "./components/Login/SigninPage";
 import Register from "./components/Login/Register";
 import Home from "./pages";
 import LR from "./components/Login/CombinedLoginRegister";
+import CollegeList from "./components/CollegeList/CollegeList";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/signin" element={<LR />} />
+        <Route path="/CollegeList" element={<CollegeList />} />
         {/* <Route path="/register" element={<Register />} /> */}
       </Routes>
     </Router>
