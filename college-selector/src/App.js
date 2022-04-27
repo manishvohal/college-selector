@@ -14,6 +14,7 @@ import Register from "./components/Login/Register";
 import Home from "./pages";
 import LR from "./components/Login/CombinedLoginRegister";
 import CollegeList from "./components/CollegeList/CollegeList";
+import About from "./pages/about";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -23,6 +24,8 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route path="/signin" element={<LR />} />
         <Route path="/CollegeList" element={<CollegeList />} />
+        <Route path="/about" element={<About />} />
+        
         {/* <Route path="/register" element={<Register />} /> */}
       </Routes>
     </Router>

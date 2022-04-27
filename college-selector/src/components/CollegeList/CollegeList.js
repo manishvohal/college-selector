@@ -2,8 +2,11 @@ import { useState } from "react";
 import axios from "axios";
 import "./styles.css";
 import * as React from "react";
-import Navbar from "../Navbar";
+// import Navbar from "../Navbar";
+import { Nav, NavLinks, NavMenu } from "../Navbar/NavbarElements"
 import { TextField, Select, MenuItem } from "@mui/material";
+import About from "../../pages/about";
+import { useNavigate } from "react-router";
 
 function CollegeList() {
   const params = {
@@ -40,7 +43,11 @@ function CollegeList() {
   const handleRatio = (event) => {
     setRatio(event.target.value);
   };
-
+  let navigate = useNavigate();
+  const handleClick = (event) => {
+    
+    navigate("/about");
+  }
 
   const [colleges, setColleges] = useState(null);
 
@@ -64,7 +71,11 @@ function CollegeList() {
   console.log(colleges);
   return (
     <div className="CollegeList">
-      <Navbar/>
+      <Nav>
+        <NavMenu>
+          <NavLinks onClick={handleClick}>About</NavLinks>
+        </NavMenu>
+      </Nav>
       <br/><br/><br/><br/><br/>
       {/* <label className="label">Primary Faith  </label>
       <Select
@@ -88,6 +99,8 @@ function CollegeList() {
           id="college-faculty"
           label="Number"
           type="number"
+          variant="standard"
+          size="small"
           onChange={handleRatio}
           InputLabelProps={{
             shrink: true,
@@ -98,8 +111,10 @@ function CollegeList() {
           id="netCost"
           label="Number"
           type="number"
-          defaultvalue={20000}
+          defaultValue={20000}
           onChange={handlenetCost}
+          variant="standard"
+          size="small"
           InputLabelProps={{
             shrink: true,
           }}
@@ -122,7 +137,7 @@ function CollegeList() {
                     <div>
                       <img
                         width="400px"
-                        height="300px"
+                        height="200px"
                         src={college.logoImage}
                       />
                       <br />

@@ -53,19 +53,18 @@ const Navbar = ({ toggle }) => {
               >
                 Home{" "}
               </NavLinks>
-            </NavItem>
+            </NavItem> */}
             <NavItem>
               <NavLinks
-                to="about"
+                to="/about"
                 smooth={true}
                 duration={500}
                 spy={true}
                 exact="true"
                 offset={-80}
-              >
-                About{" "}
+              >About{" "}
               </NavLinks>
-            </NavItem> */}
+            </NavItem>
           </NavMenu>
           <Navbtn>
             <NavBtnLink to="/signin">Register / Log In</NavBtnLink>
