@@ -4,8 +4,7 @@ import "./styles.css";
 import * as React from "react";
 // import Navbar from "../Navbar";
 import { Nav, NavLinks, NavMenu } from "../Navbar/NavbarElements"
-import { TextField, Select, MenuItem } from "@mui/material";
-import About from "../../pages/about";
+import { Select, TextField } from "@mui/material";
 import { useNavigate } from "react-router";
 
 function CollegeList() {
@@ -24,6 +23,7 @@ function CollegeList() {
       "averageNetCost",
       "studentFacultyRatio",
       "primaryFaith",
+      "stateAbbr"
     ], //returned object's content
   };
 
@@ -34,7 +34,7 @@ function CollegeList() {
     console.log(netCost);
   };
 
-  const [Catholic, setCatholic] = React.useState(null);
+  const [Catholic, setCatholic] = React.useState("catholic");
   const handleCatholic = (event) => {
     setCatholic(event.target.value);
   };
@@ -45,8 +45,7 @@ function CollegeList() {
   };
   let navigate = useNavigate();
   const handleClick = (event) => {
-    
-    navigate("/about");
+    navigate("/");
   }
 
   const [colleges, setColleges] = useState(null);
@@ -69,31 +68,17 @@ function CollegeList() {
       });
   };
   console.log(colleges);
+  const [STState, setSTState] = useState("");
   return (
     <div className="CollegeList">
       <Nav>
         <NavMenu>
-          <NavLinks onClick={handleClick}>About</NavLinks>
+          {/* <NavLinks onClick={handleClick}>About</NavLinks> */}
+          <NavLinks onClick={handleClick}>Home</NavLinks>
+
         </NavMenu>
       </Nav>
       <br/><br/><br/><br/><br/>
-      {/* <label className="label">Primary Faith  </label>
-      <Select
-        labelId="select"
-        id="catholic"
-        value="catholic"
-        label="Primary Faith"
-        onChange={handleCatholic}>
-          <MenuItem value="catholic">Catholic</MenuItem>
-          <MenuItem value="non-catholic">Non-Catholic</MenuItem>
-      </Select>
- */}
-
-      {/* <label className="label">Primary Faith  </label>
-      <select className="select" onChange={handleCatholic}>
-        <option className="option" value="catholic">Catholic</option>
-        <option className="option" value="non-catholic">Non-Catholic</option>
-      </select> */}
       <label className="label"> College-Faculty Ratio LE  </label>
       <TextField
           id="college-faculty"
@@ -117,9 +102,70 @@ function CollegeList() {
           size="small"
           InputLabelProps={{
             shrink: true,
-          }}
-        />      
-      <br/><br/>
+          }}/>
+      <label className="label"> | Prefered State  </label>
+      <select
+        className="state-selector"
+        value={STState}
+        variant="standard"
+        onChange={(e) => {
+          const selectedState = e.target.value;
+          setSTState(selectedState);
+        }}
+      >
+        <option value="AL">Alabama</option>
+          <option value="AK">Alaska</option>
+          <option value="AZ">Arizona</option>
+          <option value="AR">Arkansas</option>
+          <option value="CA">California</option>
+          <option value="CO">Colorado</option>
+          <option value="CT">Connecticut</option>
+          <option value="DE">Delaware</option>
+          <option value="DC">District Of Columbia</option>
+          <option value="FL">Florida</option>
+          <option value="GA">Georgia</option>
+          <option value="HI">Hawaii</option>
+          <option value="ID">Idaho</option>
+          <option value="IL">Illinois</option>
+          <option value="IN">Indiana</option>
+          <option value="IA">Iowa</option>
+          <option value="KS">Kansas</option>
+          <option value="KY">Kentucky</option>
+          <option value="LA">Louisiana</option>
+          <option value="ME">Maine</option>
+          <option value="MD">Maryland</option>
+          <option value="MA">Massachusetts</option>
+          <option value="MI">Michigan</option>
+          <option value="MN">Minnesota</option>
+          <option value="MS">Mississippi</option>
+          <option value="MO">Missouri</option>
+          <option value="MT">Montana</option>
+          <option value="NE">Nebraska</option>
+          <option value="NV">Nevada</option>
+          <option value="NH">New Hampshire</option>
+          <option value="NJ">New Jersey</option>
+          <option value="NM">New Mexico</option>
+          <option value="NY">New York</option>
+          <option value="NC">North Carolina</option>
+          <option value="ND">North Dakota</option>
+          <option value="OH">Ohio</option>
+          <option value="OK">Oklahoma</option>
+          <option value="OR">Oregon</option>
+          <option value="PA">Pennsylvania</option>
+          <option value="RI">Rhode Island</option>
+          <option value="SC">South Carolina</option>
+          <option value="SD">South Dakota</option>
+          <option value="TN">Tennessee</option>
+          <option value="TX">Texas</option>
+          <option value="UT">Utah</option>
+          <option value="VT">Vermont</option>
+          <option value="VA">Virginia</option>
+          <option value="WA">Washington</option>
+          <option value="WV">West Virginia</option>
+          <option value="WI">Wisconsin</option>
+          <option value="WY">Wyoming</option>      
+      </select>
+    <br/><br/>
       <div>
         <button className="fetch-button" onClick={fetchData}>
           Load Data
@@ -130,7 +176,8 @@ function CollegeList() {
             colleges.map((college, index) => {
               if (
                 college.studentFacultyRatio <= Ratio &&
-                college.averageNetCost <= netCost
+                college.averageNetCost <= netCost &&
+                college.stateAbbr == STState
               ) {
                 return (
                   <div className="college" key={index}>
@@ -139,6 +186,7 @@ function CollegeList() {
                         width="400px"
                         height="200px"
                         src={college.logoImage}
+                        alt=""
                       />
                       <br />
                       <a href={college.website}>{college.website}</a>
@@ -149,7 +197,7 @@ function CollegeList() {
                         <p>{college.primaryFaith}</p>
                         <p>Student-Faculty Ratio:{college.studentFacultyRatio}</p>
                         <p>Average Net Cost:{college.averageNetCost}</p>
-                        <p>{netCost}</p>
+                        <p>{college.stateAbbr}</p>
                       </div>
                     </div>
                   </div>

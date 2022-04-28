@@ -18,11 +18,6 @@ const HeroSection = () => {
       <HeroContent>
         <HeroH1>Find Your Perfect Match</HeroH1>
         <HeroP>Get Started Today!</HeroP>
-        {/* <HeroBtnWrapper>
-          <BtnLink to="/register" onMouseEnter={onHover} onMouseLeave={onHover}>
-            Register {hover ? <ArrowForward /> : <ArrowRight />}
-          </BtnLink>
-        </HeroBtnWrapper> */}
       </HeroContent>
     </HeroContainer>
   );
