@@ -5,7 +5,7 @@ import { Link as LinkS } from "react-scroll";
 // Styled component named StyledButton
 export const Nav = styled.nav`
   /* background: ${({ scrollNav }) => (scrollNav ? "#000" : "transparent")}; */
-  background: black;
+  background:#F1EDBC;
   height: 80px;
   margin-top: -80px;
   display: flex;
@@ -32,7 +32,7 @@ export const NavbarContainer = styled.div`
 `;
 
 export const NavLogo = styled(LinkR)`
-  color: pink;
+  color: black;
   justify-self: flex-start;
   cursor: pointer;
   font-size: 1.5rem;
@@ -56,11 +56,11 @@ export const MobileIcon = styled.div`
 
 export const NavMenu = styled.ul`
   display: flex;
-  align-items: center;
+  align-items: left;
   list-style: none;
-  text-align: center;
-  margin-right: -22px;
-
+  text-align: left;
+  // margin-right: -22px;
+  color: black;
   @media screen and (max-width: 768px) {
     display: none;
   }
@@ -71,13 +71,14 @@ export const NavItem = styled.li`
 `;
 
 export const NavLinks = styled(LinkS)`
-  color: #fff;
+  color: black;
   display: flex;
   align-items: center;
   text-decoration: none;
   padding: 0 1rem;
   height: 100%;
   cursor: pointer;
+  font-weight: 200;
 
   &.active {
     border-bottom: 3px solid #ffb6c1;
