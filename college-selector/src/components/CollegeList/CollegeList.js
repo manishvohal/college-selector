@@ -3,8 +3,7 @@ import axios from "axios";
 import "./styles.css";
 import * as React from "react";
 // import Navbar from "../Navbar";
-import { Nav, NavLinks, NavMenu } from "../Navbar/NavbarElements"
-import { nativeSelectClasses, TextField } from "@mui/material";
+import { Nav, NavLinks} from "../Navbar/NavbarElements"
 import { useNavigate } from "react-router";
 import { Button } from "grommet";
 import Slider from '@mui/material/Slider';
@@ -30,7 +29,9 @@ function CollegeList() {
       "primaryFaith",
       "stateAbbr",
       "satMathPercentile75",
-      "satReadingPercentile75"
+      "satReadingPercentile75",
+      "sat_average",
+      "campus_image"
     ], //returned object's content
   };
 
@@ -73,8 +74,6 @@ function CollegeList() {
         {params}
       )
       .then(function (response) {
-        console.log(response);
-        console.log(response.data);
         setColleges(response.data.colleges);
       });
   };
@@ -202,11 +201,18 @@ function CollegeList() {
                   <div className="college" key={index}>
                     <div>
                       <img
-                        width="400px"
-                        height="200px"
+                        width="500px"
+                        height="400px"
+                        src={college.campusImage}
+                        alt=""
+                      />
+                        <img
+                        width="500px"
+                        height="400px"
                         src={college.logoImage}
                         alt=""
                       />
+
                       <br />
                       <a href={college.website}>{college.website}</a>
                       <div className="details">
@@ -217,7 +223,7 @@ function CollegeList() {
                         <p>Student-Faculty Ratio:{college.studentFacultyRatio}</p>
                         <p>Average Net Cost:{college.averageNetCost}</p>
                         <p>{college.stateAbbr}</p>
-                        <>SAT: {college.satMathPercentile75 + college.satReadingPercentile75}</>
+                        <>SAT: {college.satAverage}</>
                       </div>
                     </div>
                   </div>
